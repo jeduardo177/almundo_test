@@ -12,7 +12,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var mongoose = require('./config/mongoose'),
     express = require('./config/express');
 
-//Para middleware
+//Para middleware no aplica en este demo pero dejo para futura implementación
 //passport = require('./config/passport');
 
 // Crear una nueva instancia conexión Mongoose
@@ -30,5 +30,5 @@ app.listen(3000);
 // Hacer Log del status del server a la consola
 console.log('Servidor ejecutándose en http://localhost:3000/');
 
-// Usar la prpiedad module.exports para exponer nuestra nuestra instancia de la aplicación Express para uso externo
+// Usar la prpiedad module.exports para exponer nuestra instancia de la aplicación Express para uso externo
 module.exports = app;
