@@ -14,6 +14,7 @@ var config = require('./config'),
     methodOverride = require('method-override'),
     session = require('express-session'),
     flash = require('connect-flash'),
+    cors = require('cors'),
     passport = require('passport');
 
 // Definir el método de configuración de Express
@@ -41,6 +42,14 @@ module.exports = function() {
         resave: true,
         secret: config.sessionSecret
     }));
+
+//CORS
+    app.use(function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        next();
+    })
 
 // Configurar el motor view de la aplicación y el directorio 'views'
     app.set('views', './app/views');

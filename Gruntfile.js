@@ -2,18 +2,44 @@
  * Created by Jose on 18/03/2017.
  */
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    // Project configuration.
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        //uglify
         uglify: {
-            min: {
-                src: '<%= pkg.name %>.js',
-                dest: '<%= pkg.name %>.min.js'
+            options: {
+                mangle: false,
+                compress: {
+                    drop_console: true
+                }
+            },
+            js: {
+                files: [{
+                    cwd: 'config',
+                    expand: true,
+                    src: '*.js',
+                    dest: 'config/min/'
+                }]
+            }
+        },
+        watch: {
+            scripts: {
+
+                files: ['/app/*.js'],
+                expand: true,
+                tasks: ['uglify'],
+                options: {
+                    spawn: false,
+                }
             }
         }
     });
 
+    // loadNpmTasks
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['uglify']);
+    grunt.loadNpmTasks('grunt-contrib-watch');
+
+    // Run Default task(s).
+    grunt.registerTask('default', ['watch']);
 };

@@ -8,10 +8,9 @@
 // Cargar las dependencias del módulo
  var hotels = require('../../app/controllers/hotel-controller');
 
-
 // Definir el método routes de module
 module.exports = function(app) {
-    // Configurar la rutas base a 'articles'
+    // Configurar la rutas bases
     app.route('/hotels')
        .get(hotels.listHotels)
        .post(hotels.createHotel);

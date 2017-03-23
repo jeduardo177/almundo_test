@@ -38,7 +38,6 @@ exports.listHotels = function(req, res) {
                 message: getErrorMessage(err)
             });
         } else {
-
             res.json(resp);
         }
     });

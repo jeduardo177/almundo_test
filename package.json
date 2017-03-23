@@ -25,6 +25,8 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
     "mongoose": "^4.9.0"
   }
 }
