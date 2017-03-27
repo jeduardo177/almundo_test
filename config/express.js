@@ -10,9 +10,6 @@ var config = require('./config'),
     express = require('express'),
     morgan = require('morgan'),
     compress = require('compression'),
-    bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    session = require('express-session'),
     flash = require('connect-flash'),
     cors = require('cors'),
     passport = require('passport');
@@ -29,20 +26,6 @@ module.exports = function() {
         app.use(compress());
     }
 
-    // Usar las funciones middleware 'body-parser' y 'method-override'
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
-    app.use(bodyParser.json());
-    app.use(methodOverride());
-
-//Configurar el middleware 'session'
-    app.use(session({
-        saveUninitialized: true,
-        resave: true,
-        secret: config.sessionSecret
-    }));
-
 //CORS
     app.use(function(req, res, next) {
         res.header('Access-Control-Allow-Origin', "*");
@@ -56,8 +39,6 @@ module.exports = function() {
     app.set('view engine', 'ejs');
 
     app.use(flash());
-    //app.use(passport.initialize());
-    //app.use(passport.session());
 
     // Cargar los archivos de enrutamiento
     require('../app/routes/hotel-routes.js')(app);

@@ -11,7 +11,13 @@
 // Definir el método routes de module
 module.exports = function(app) {
     // Configurar la rutas bases
-    app.route('/hotels')
+     app.route('/hotels')
        .get(hotels.listHotels)
        .post(hotels.createHotel);
+
+    app.route('/getHotelMinPrice')
+        .get(hotels.minPriceHotel);
+
+    app.route('/getHotelMaxPrice')
+        .get(hotels.maxPriceHotel);
 };

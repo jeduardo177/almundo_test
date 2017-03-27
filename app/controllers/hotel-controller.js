@@ -43,6 +43,30 @@ exports.listHotels = function(req, res) {
     });
 };
 
+exports.minPriceHotel = function(req, res) {
+    Hotel.findOne({}, '-_id -__v', {sort: {price: 1 }}, function(err, resp) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(resp);
+        }
+    });
+};
+
+exports.maxPriceHotel = function(req, res) {
+    Hotel.findOne({}, '-_id -__v', {sort: {price: -1 }}, function(err, resp) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(resp);
+        }
+    });
+};
+
 var getErrorMessage = function(err) {
     if (err.errors) {
         for (var errName in err.errors) {
